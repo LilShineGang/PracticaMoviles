@@ -13,14 +13,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.window.core.layout.WindowSizeClass
 
-import ies.sequeros.dam.pmdp.modelo.Digimon
+import ies.sequeros.dam.pmdp.modelo.Producto
 import ies.sequeros.dam.pmdp.vista.DigimonViewModel
 import kotlinx.coroutines.launch
-import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -30,13 +26,13 @@ fun ListadoDigimon() {
     val vm: DigimonViewModel= koinViewModel ()
     val navigator = rememberListDetailPaneScaffoldNavigator<Nothing>()
     // estado de selección
-    var selectedItem by remember { mutableStateOf<Digimon?>(null) }
+    var selectedItem by remember { mutableStateOf<Producto?>(null) }
     val items=vm.items.collectAsState()
     //corrutina
     val scope = rememberCoroutineScope()
 
     // al seleccionar un elemento: cargar borrador desde el contenido
-    fun onSelect(item: Digimon) {
+    fun onSelect(item: Producto) {
         selectedItem = item
         scope.launch {
             navigator.navigateTo(ListDetailPaneScaffoldRole.Detail)

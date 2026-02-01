@@ -5,8 +5,7 @@ import androidx.lifecycle.viewModelScope
 import ies.sequeros.dam.pmdp.DispatcherIO
 import ies.sequeros.dam.pmdp.aplicacion.GetAllDigimonsUseCase
 
-import ies.sequeros.dam.pmdp.modelo.Digimon
-import kotlinx.coroutines.Dispatchers
+import ies.sequeros.dam.pmdp.modelo.Producto
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DigimonViewModel(getAllDigimonUseCase: GetAllDigimonsUseCase) : ViewModel() {
-    private val _items = MutableStateFlow<List<Digimon>>(emptyList())
+    private val _items = MutableStateFlow<List<Producto>>(emptyList())
 
     val items = _items.asStateFlow()
 
