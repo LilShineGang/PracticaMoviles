@@ -9,33 +9,50 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Fastfood
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ies.sequeros.dam.pmdp.modelo.Producto
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.IconButton
-import androidx.compose.material.icons.filled.Fastfood
 
 @Composable
 fun PanelListadoProductos(
     items: List<Producto>,
     selected: Producto?,
     onSelect: (Producto) -> Unit,
-    onDelete: (Producto) -> Unit
+    onDelete: (Producto) -> Unit,
+    onCreate: () -> Unit
 ) {
-    Surface {
-        if (items.isEmpty()) {
-            Text("Cargando Productos...", modifier = Modifier.padding(16.dp))
-        } else {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(onClick = onCreate) {
+                Icon(Icons.Default.Add, contentDescription = "Crear Nuevo Producto")
+            }
+        }
+    ) { paddingValues ->
 
+        if (items.isEmpty()) {
+            Text(
+                "Cargando Productos...",
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(16.dp)
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
                 items(items, key = { it.nombre }) { item ->
                     ListItem(
                         headlineContent = {
