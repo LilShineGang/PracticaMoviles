@@ -1,5 +1,5 @@
 package ies.sequeros.dam.pmdp.modelo
 
-interface IDigimonRepositorio {
+interface IProductoRepositorio {
     suspend fun getAll():List<Producto>
 }

@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 
+
 import ies.sequeros.dam.pmdp.modelo.Producto
 import ies.sequeros.dam.pmdp.vista.DigimonViewModel
 import kotlinx.coroutines.launch
@@ -21,46 +22,50 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
-fun ListadoDigimon() {
-   //injeccion de dependencias
-    val vm: DigimonViewModel= koinViewModel ()
+fun ListadoProductos() { // Renombrado a ListadoProductos
+    // Inyección del nuevo ViewModel de Productos
+    val vm: ProductosViewModel = koinViewModel()
+
     val navigator = rememberListDetailPaneScaffoldNavigator<Nothing>()
-    // estado de selección
+
+    // Estado de selección usando PRODUCTO
     var selectedItem by remember { mutableStateOf<Producto?>(null) }
-    val items=vm.items.collectAsState()
-    //corrutina
+
+    val items = vm.items.collectAsState()
     val scope = rememberCoroutineScope()
 
-    // al seleccionar un elemento: cargar borrador desde el contenido
     fun onSelect(item: Producto) {
         selectedItem = item
         scope.launch {
             navigator.navigateTo(ListDetailPaneScaffoldRole.Detail)
         }
     }
-    //tamaño de la ventana, para mostrar o no el botón de back
-    val windowInfo=currentWindowAdaptiveInfo()
+
+    val windowInfo = currentWindowAdaptiveInfo()
     val directive = calculatePaneScaffoldDirective(windowInfo)
-    val mostrarBotonAtras= directive.maxHorizontalPartitions == 1
+    val mostrarBotonAtras = directive.maxHorizontalPartitions == 1
+
     ListDetailPaneScaffold(
         directive = navigator.scaffoldDirective,
         value = navigator.scaffoldValue,
         listPane = {
-            PanelListadoDigimon(
+            // Llamamos al panel que arreglaste antes
+            PanelListadoProductos(
                 items = items.value,
                 selected = selectedItem,
                 onSelect = ::onSelect
             )
         },
         detailPane = {
-            DetalleDigion(
+            // Llamamos al detalle que arreglaste antes
+            DetalleProducto(
                 item = selectedItem,
                 onBack = {
                     scope.launch {
                         navigator.navigateBack()
                     }
                 },
-                mostrarBotonAtras
+                mostrarBotonAtras = mostrarBotonAtras
             )
         },
     )

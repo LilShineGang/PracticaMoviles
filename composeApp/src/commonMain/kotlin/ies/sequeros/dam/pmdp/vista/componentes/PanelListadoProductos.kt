@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import ies.sequeros.dam.pmdp.modelo.Producto
 
 @Composable
-fun PanelListadoDigimon(
+fun PanelListadoProductos(
     items: List<Producto>,
     selected: Producto?,
     onSelect: (Producto) -> Unit
@@ -29,11 +29,11 @@ fun PanelListadoDigimon(
     Surface {
         if (items.isEmpty()) {
             // Mientras la petición REST carga, mostrar un aviso o carga
-            Text("Cargando Digimons...", modifier = Modifier.padding(16.dp))
+            Text("Cargando Productos...", modifier = Modifier.padding(16.dp))
         } else {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
 
-                items(items, key = { it.name })  { item ->
+                items(items, key = { it.nombre })  { item ->
                     ListItem(
                         headlineContent = {
                             Row() {
@@ -43,7 +43,7 @@ fun PanelListadoDigimon(
                                     modifier = Modifier.size(24.dp),
                                     tint = MaterialTheme.colorScheme.primary
                                 )
-                                Text(item.name)
+                                Text(item.nombre)
                             }
                         },
                         modifier = Modifier
@@ -56,12 +56,12 @@ fun PanelListadoDigimon(
                             .padding(horizontal = 16.dp, vertical = 8.dp),
                         supportingContent = {
                             Text(
-                                text = item.level,
+                                text = "${item.precio} €",
                                 maxLines = 1
                             )
 
                         },
-                        tonalElevation = if (item.name == selected?.name) 4.dp else 0.dp
+                        tonalElevation = if (item.nombre == selected?.nombre) 4.dp else 0.dp
                     )
                 }
             }

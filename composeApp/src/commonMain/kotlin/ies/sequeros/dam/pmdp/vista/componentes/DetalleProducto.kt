@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Error
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -35,7 +36,7 @@ import org.jetbrains.compose.resources.painterResource
 
 
 @Composable
-fun DetalleDigion(
+fun DetalleProducto(
     item: Producto?,
     onBack: () -> Unit,
     mostrarBotonAtras: Boolean
@@ -53,44 +54,16 @@ fun DetalleDigion(
     ) {
         Column(modifier = Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally,
            verticalArrangement =Arrangement.Center ) {
-            Text(item.name, style = MaterialTheme.typography.headlineSmall)
+            Text(item.nombre, style = MaterialTheme.typography.headlineSmall)
             Spacer(Modifier.height(12.dp))
-            Text(item.name)
+            Text(item.nombre)
             Spacer(Modifier.height(16.dp))
-            SubcomposeAsyncImage(
-                model = item.img,
-                contentDescription = "",
-            ){
-                val state by painter.state.collectAsState()
-                when (state){
-                    is AsyncImagePainter.State.Success-> {
-                        SubcomposeAsyncImageContent(
-                            modifier = Modifier.fillMaxWidth(0.5f)
-                        )
-                    }
-                    is AsyncImagePainter.State.Loading->{
-                        CircularProgressIndicator(
-                            color= MaterialTheme.colorScheme.primary
-                        )
-
-                    }
-                    is AsyncImagePainter.State.Error->{
-                        Image(
-                            painter = painterResource(Res.drawable.img),
-                            contentDescription = null
-                        )
-                    }
-                    else -> {
-                        //no deberia llegar aquí
-                        Icon(
-                            imageVector = Icons.Default.Error,
-                            contentDescription = contentDescription,
-                            modifier = Modifier.size(24.dp),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
-            }
+            Icon(
+                imageVector = Icons.Default.Info,
+                contentDescription = "Icono producto",
+                modifier = Modifier.size(100.dp),
+                tint = MaterialTheme.colorScheme.primary
+            )
             if (mostrarBotonAtras) {
                 Spacer(Modifier.height(16.dp))
                 //Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
