@@ -16,7 +16,7 @@ import androidx.compose.runtime.setValue
 
 
 import ies.sequeros.dam.pmdp.modelo.Producto
-import ies.sequeros.dam.pmdp.vista.DigimonViewModel
+import ies.sequeros.dam.pmdp.vista.ProductosViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
