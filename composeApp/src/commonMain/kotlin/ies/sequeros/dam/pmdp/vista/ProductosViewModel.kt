@@ -3,7 +3,7 @@ package ies.sequeros.dam.pmdp.vista
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ies.sequeros.dam.pmdp.DispatcherIO
-import ies.sequeros.dam.pmdp.aplicacion.BorrarProductoUseCase
+import ies.sequeros.dam.pmdp.aplicacion.BorrarProductosUseCase
 import ies.sequeros.dam.pmdp.aplicacion.CrearProductoUseCase
 import ies.sequeros.dam.pmdp.aplicacion.ListarProductosUseCase
 import ies.sequeros.dam.pmdp.modelo.Producto
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class ProductosViewModel(
     private val listarProductosUseCase: ListarProductosUseCase,
-    private val borrarProductoUseCase: BorrarProductoUseCase,
+    private val borrarProductoUseCase: BorrarProductosUseCase,
     private val crearProductoUseCase: CrearProductoUseCase
 ) : ViewModel() {
 

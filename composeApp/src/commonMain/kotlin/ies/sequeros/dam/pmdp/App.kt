@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-import ies.sequeros.dam.pmdp.vista.componentes.ListadoDigimon
+import ies.sequeros.dam.pmdp.vista.componentes.ListadoProductos
 
 
 @Composable
@@ -24,6 +24,6 @@ fun App() {
             background = Color(0xFFF1FDF4),
         )
     ) {
-        ListadoDigimon()
+        ListadoProductos()
     }
 }
